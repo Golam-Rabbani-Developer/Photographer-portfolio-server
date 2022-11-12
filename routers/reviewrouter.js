@@ -1,9 +1,10 @@
 const router = require('express').Router()
 const mongoose = require('mongoose');
+const authenticate = require('../authenticate');
 const { sendReviews, getProductReviews, getPersonsReviews, editReview, removeReview } = require('../controllers/reviewscontroller');
 
 // send the reviews to the database 
-router.post('/sendReviews', sendReviews)
+router.post('/sendReviews', authenticate, sendReviews)
 
 
 // get a single product reviws 
@@ -16,7 +17,7 @@ router.put('/editReview/:id', editReview)
 
 
 //get a single persons reviews 
-router.get('/getSinglePersonsReviews/:email', getPersonsReviews)
+router.get('/getSinglePersonsReviews/:email', authenticate, getPersonsReviews)
 
 
 //delete a particular review

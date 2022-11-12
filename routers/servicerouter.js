@@ -5,7 +5,7 @@ const router = require('express').Router();
 
 
 // send a new services to database 
-router.post('/addservice', sendServices);
+router.post('/addservice', authenticate, sendServices);
 
 //get only 3 service
 router.get('/getservice', getService)

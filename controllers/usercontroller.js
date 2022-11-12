@@ -57,6 +57,36 @@ module.exports = {
         })
 
     },
+    login(req, res) {
+        // getting data from frontend 
+        let { password, email } = req.body;
+
+        // checking the user 
+        Users.findOne({ email: email })
+            .then(user => {
+                if (user) {
+
+                    // user password checking 
+                    bcrypt.compare(password, user.password).then(function (result) {
+                        if (result) {
+                            res.status(200).json({
+                                user
+                            })
+                        } else {
+                            res.status(200).json({
+                                messgage: "Password Didn't Match"
+                            })
+                        }
+                    });
+                }
+                if (!user) {
+                    res.status(401).json({
+                        message: 'Unauthorized User'
+                    })
+                }
+            })
+            .catch(err => console.log(err))
+    },
 
 
 }
