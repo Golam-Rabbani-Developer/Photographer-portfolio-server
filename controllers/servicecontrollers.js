@@ -1,5 +1,5 @@
 const Services = require('../models/servicesmodels')
-const router = require('express').Router();
+
 
 
 module.exports = {
@@ -27,6 +27,7 @@ module.exports = {
 
     // get only 3 service
     getService(req, res) {
+
         Services.find({}, null, { limit: 3 })
             .then(services => {
                 if (services) {
@@ -42,6 +43,7 @@ module.exports = {
 
     // get all services from the database 
     getAllServices(req, res) {
+        console.log(req.headers)
         Services.find({})
             .then(services => {
                 if (services) {
