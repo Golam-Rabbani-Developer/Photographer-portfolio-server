@@ -48,7 +48,7 @@ app.use('/photographer-portfolio/reviews', require('./routers/reviewrouter'))
 app.use('/photographer-portfolio/users', require('./routers/userrouter'))
 
 
-app.get('./', (req, res) => {
+app.get('/', (req, res) => {
     res.json({
         message: "Welcome to Phootgraphy"
     })
