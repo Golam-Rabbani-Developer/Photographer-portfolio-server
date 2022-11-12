@@ -94,5 +94,22 @@ module.exports = {
             .catch(err => res.status(400).json(
                 { 'message': err }
             ))
+    },
+
+
+
+    //delete a particular review
+    removeReview(req, res) {
+        let { id } = req.params;
+        Reviews.findByIdAndDelete(id)
+            .then(review => {
+                if (review) {
+                    res.status(200).json({
+                        review,
+                        message: 'Delete Confirmed'
+                    })
+                }
+            })
+            .catch(err => console.log(err))
     }
 }
