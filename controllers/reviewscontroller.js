@@ -24,30 +24,27 @@ module.exports = {
 
 
 
-    // get all reviews 
-    getAllreviews(req, res) {
-        Reviews.find({})
+    // get a particular Product reviews 
+    getProductReviews(req, res) {
+        let { id } = req.params;
+        Reviews.find({ productid: id })
             .then(reviews => {
                 if (reviews) {
-                    res.status(200).json({
+                    res.status(200).json(
                         reviews
-                    })
-                } else {
-                    res.status(200).json({
-                        message: "NO data Found"
-                    })
+                    )
                 }
             })
-            .catch(err => res.status(400).json({
-                messgae: err
-            }))
+            .catch(err => res.status(400).json(
+                { 'message': err }
+            ))
     },
 
 
-    // get a particular reviewer reviews 
-    getPersonReviews(req, res) {
-        let { id } = req.params;
-        Reviews.find({ productid: id })
+    // get a particular persons reviews 
+    getPersonsReviews(req, res) {
+        let { email } = req.params;
+        Reviews.find({ email: email })
             .then(reviews => {
                 if (reviews) {
                     res.status(200).json(

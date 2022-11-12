@@ -25,6 +25,20 @@ module.exports = {
     },
 
 
+    // get only 3 service
+    getService(req, res) {
+        Services.find({}, null, { limit: 3 })
+            .then(services => {
+                if (services) {
+                    res.status(200).json({
+                        services
+                    })
+                }
+            })
+            .catch(err => console.log(err))
+    },
+
+
 
     // get all services from the database 
     getAllServices(req, res) {
